@@ -9,11 +9,12 @@ app = Flask(__name__)
 
 # ─── ATTACK SIGNATURES ─────────────────────────────────────────────────────────
 RULES = [
-    {
+     {
         "name": "SQL Injection",
         "category": "SQLi",
         "pattern": re.compile(
-           r"(%20|\s|'|\"|\+)*(or|and|union|select|insert|drop|delete|--|xp_|exec\s*\()",
+            r"('|%27)\s*(or|and|union|select|insert|drop|delete|--|xp_|exec)|(\d\s*=\s*\d)|(-{2,})",
+            re.IGNORECASE
         )
     },
     {
